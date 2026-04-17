@@ -1,72 +1,64 @@
 import AnimateOnScroll from "./AnimateOnScroll";
+import c1 from "@/assets/complejo-1.jpg";
+import c2 from "@/assets/complejo-2.jpg";
+import c3 from "@/assets/complejo-3.jpg";
+import c4 from "@/assets/complejo-4.jpg";
+import { ArrowRight } from "lucide-react";
 
-const sports = [
-  { emoji: "⚽", label: "Fútbol 5" },
-  { emoji: "🏀", label: "Básquet 3v3" },
-  { emoji: "🎾", label: "Pádel" },
-  { emoji: "🏃", label: "Running" },
-  { emoji: "🏐", label: "Vóley" },
-  { emoji: "🚴", label: "Ciclismo" },
-];
-
-const stats = [
-  { num: "500+", label: "partidos activos" },
-  { num: "12", label: "deportes disponibles" },
-  { num: "30s", label: "para sumarte" },
+const complejos = [
+  { img: c1, name: "La Bombonerita", sport: "Fútbol 5", zone: "Nueva Córdoba" },
+  { img: c2, name: "Glass Padel Club", sport: "Pádel", zone: "Cerro de las Rosas" },
+  { img: c3, name: "Polideportivo Norte", sport: "Básquet", zone: "Alta Córdoba" },
+  { img: c4, name: "Red Clay Center", sport: "Tenis", zone: "Villa Belgrano" },
 ];
 
 const SportsSection = () => {
   return (
-    <section className="section-padding relative overflow-hidden bg-background">
-      {/* Background accent */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-15 pointer-events-none" style={{ background: "radial-gradient(circle, hsl(48 100% 50% / 0.5), transparent 70%)" }} />
-
-      <div className="container-narrow relative z-10">
-        <AnimateOnScroll className="text-center mb-16">
-          <span className="inline-block text-xs sm:text-[13px] font-medium text-primary tracking-tight mb-6">
-            Deportes
-          </span>
-          <h2 className="headline-lg text-4xl sm:text-6xl md:text-7xl lg:text-[5rem] mb-6">
-            <span className="text-gradient-mute">El partido</span>
-            <br />
-            <span className="text-gradient-warm">te está esperando.</span>
-          </h2>
-          <p className="text-foreground/60 text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
-            ¿Querés jugar un fútbol 5 ahora? ¿Un 3v3 de básquet? ¿Un pádel?
-            En Pipol siempre falta uno. Y ese uno podés ser vos.
+    <section id="canchas" className="bg-white text-foreground section-y overflow-hidden">
+      <div className="container-page">
+        <AnimateOnScroll>
+          <span className="eyebrow text-muted-foreground">Canchas</span>
+        </AnimateOnScroll>
+        <AnimateOnScroll delay={80}>
+          <h2 className="display-lg mt-6 max-w-[16ch]">Reservá. Jugá. Repetí.</h2>
+        </AnimateOnScroll>
+        <AnimateOnScroll delay={160}>
+          <p className="mt-6 max-w-xl text-lg text-muted-foreground leading-relaxed">
+            Los mejores complejos de Córdoba, en tu bolsillo.
           </p>
         </AnimateOnScroll>
+      </div>
 
-        {/* Sports pills */}
-        <div className="flex flex-wrap justify-center gap-3 mb-16 max-w-2xl mx-auto">
-          {sports.map((s, i) => (
-            <AnimateOnScroll key={s.label} delay={i * 50}>
-              <div className="glass-yellow rounded-full px-5 py-2.5 flex items-center gap-2.5 hover:scale-105 transition-transform duration-300">
-                <span className="text-lg">{s.emoji}</span>
-                <span className="font-medium text-[14px] tracking-tight">{s.label}</span>
+      <AnimateOnScroll delay={200} className="mt-16">
+        <div
+          className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4"
+          style={{ paddingLeft: "max(1.25rem, 5vw)", paddingRight: "max(1.25rem, 5vw)" }}
+        >
+          {complejos.map((c) => (
+            <article key={c.name} className="snap-start shrink-0 w-[78vw] sm:w-[420px] group">
+              <div className="aspect-[4/5] rounded-3xl overflow-hidden bg-surface">
+                <img
+                  src={c.img}
+                  alt={c.name}
+                  loading="lazy"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                />
               </div>
-            </AnimateOnScroll>
-          ))}
-        </div>
-
-        {/* Stats — Apple style */}
-        <AnimateOnScroll>
-          <div className="surface-card p-10 sm:p-14 max-w-4xl mx-auto">
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-6 text-center">
-              {stats.map((s) => (
-                <div key={s.label}>
-                  <p className="headline-xl text-5xl sm:text-6xl mb-3 text-gradient-warm">
-                    {s.num}
-                  </p>
-                  <p className="text-foreground/55 text-[14px] tracking-tight">
-                    {s.label}
+              <div className="flex items-end justify-between mt-5 px-1">
+                <div>
+                  <h3 className="text-xl font-semibold tracking-tight">{c.name}</h3>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    {c.sport} · {c.zone}
                   </p>
                 </div>
-              ))}
-            </div>
-          </div>
-        </AnimateOnScroll>
-      </div>
+                <a href="#download" className="link-arrow text-foreground hover:text-foreground/70">
+                  Reservar <ArrowRight className="w-4 h-4" />
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </AnimateOnScroll>
     </section>
   );
 };
