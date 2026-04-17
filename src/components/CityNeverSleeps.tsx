@@ -1,68 +1,46 @@
 import AnimateOnScroll from "./AnimateOnScroll";
-import { Clock, Wifi, Flame, Sparkles } from "lucide-react";
 
-const cards = [
+const features = [
   {
-    icon: Clock,
-    title: "Siempre está pasando algo",
-    desc: "De día, de noche, de madrugada. Pipol nunca duerme porque tu ciudad tampoco.",
-    gradient: "from-amber-500/10 to-orange-500/10",
+    title: "En vivo.",
+    desc: "No es un catálogo viejo de eventos. Es lo que está pasando ahora mismo, con fotos y videos de los que ya están ahí.",
   },
   {
-    icon: Wifi,
-    title: "Todo en tiempo real",
-    desc: "No es un catálogo viejo. Es lo que está pasando ahora, con fotos y videos de los que ya están ahí.",
-    gradient: "from-blue-500/10 to-cyan-500/10",
+    title: "Espontáneo.",
+    desc: "Estás aburrido, abrís Pipol, en cinco minutos tenés plan. Sin organizar nada. Sin esperar a nadie.",
   },
   {
-    icon: Flame,
-    title: "La espontaneidad es todo",
-    desc: "¿Estás aburrido? En 5 minutos tenés un plan. Sin organizar nada, sin esperar a nadie.",
-    gradient: "from-red-500/10 to-pink-500/10",
-  },
-  {
-    icon: Sparkles,
-    title: "Experiencias reales",
+    title: "Real.",
     desc: "No es scrollear fotos. Es salir de tu casa, conocer gente, vivir cosas que no te esperabas.",
-    gradient: "from-green-500/10 to-emerald-500/10",
   },
 ];
 
 const CityNeverSleeps = () => {
   return (
-    <section id="que-es" className="section-padding relative">
-      {/* Subtle background accent */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-
-      <div className="container mx-auto">
-        <AnimateOnScroll className="text-center mb-16">
-          <span className="inline-block text-primary font-display text-xs sm:text-sm uppercase tracking-[0.25em] mb-5">
-            La ciudad nunca duerme
+    <section id="que-es" className="section-padding relative bg-background">
+      <div className="container-narrow">
+        {/* Apple-style massive statement headline */}
+        <AnimateOnScroll className="text-center mb-20 sm:mb-28">
+          <span className="inline-block text-xs sm:text-[13px] font-medium text-primary tracking-tight mb-6">
+            ¿Qué es Pipol?
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-            ¿Qué hacés hoy?
+          <h2 className="headline-lg text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] max-w-[1000px] mx-auto">
+            <span className="text-gradient-mute">El mapa vivo</span>
             <br />
-            <span className="text-gradient">Pipol te lo resuelve.</span>
+            <span className="text-foreground/40">de tu ciudad.</span>
           </h2>
-          <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-            Imaginate abrir una app y ver todo lo que está pasando cerca tuyo
-            ahora mismo. Fiestas en terrazas, partidos, juntadas, recitales, afters.
-            Eso es Pipol.
-          </p>
         </AnimateOnScroll>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-4xl mx-auto">
-          {cards.map((c, i) => (
-            <AnimateOnScroll key={c.title} delay={i * 120}>
-              <div className={`feature-card group relative overflow-hidden h-full bg-gradient-to-br ${c.gradient}`}>
-                <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors duration-500">
-                  <c.icon className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="font-display text-lg sm:text-xl font-semibold mb-3">
-                  {c.title}
+        {/* Three pillars — Apple style */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-border/50 rounded-[28px] overflow-hidden">
+          {features.map((f, i) => (
+            <AnimateOnScroll key={f.title} delay={i * 100}>
+              <div className="bg-background p-8 sm:p-10 h-full">
+                <h3 className="headline-lg text-2xl sm:text-3xl mb-4 text-gradient-warm">
+                  {f.title}
                 </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  {c.desc}
+                <p className="text-foreground/60 text-[15px] leading-relaxed">
+                  {f.desc}
                 </p>
               </div>
             </AnimateOnScroll>

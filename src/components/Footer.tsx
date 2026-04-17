@@ -1,35 +1,70 @@
+import pipolIcon from "@/assets/pipol-icon.png";
+
+const linkGroups = [
+  {
+    title: "Producto",
+    links: ["Mapa en vivo", "Vibes", "Para vos", "Deportes"],
+  },
+  {
+    title: "Empresa",
+    links: ["Sobre Pipol", "Trabajá con nosotros", "Prensa", "Contacto"],
+  },
+  {
+    title: "Soporte",
+    links: ["Centro de ayuda", "Comunidad", "Términos", "Privacidad"],
+  },
+  {
+    title: "Seguinos",
+    links: ["Instagram", "TikTok", "Twitter", "YouTube"],
+  },
+];
+
 const Footer = () => {
   return (
-    <footer className="border-t border-border/50 py-14 px-5 sm:px-6">
-      <div className="container mx-auto">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-          <div className="text-center md:text-left">
-            <span className="font-display text-2xl font-bold text-gradient inline-flex items-center gap-2">
-              <span className="w-7 h-7 rounded-lg flex items-center justify-center text-xs" style={{ background: "linear-gradient(135deg, hsl(48 100% 50%), hsl(42 100% 45%))" }}>
-                <span className="font-black" style={{ color: "hsl(225 25% 3%)" }}>P</span>
+    <footer className="border-t border-border/50 pt-20 pb-10 px-5 sm:px-8 bg-background">
+      <div className="container-narrow">
+        {/* Top: logo + tagline */}
+        <div className="flex flex-col sm:flex-row items-start justify-between gap-10 mb-16">
+          <div>
+            <div className="flex items-center gap-2.5 mb-4">
+              <span className="w-8 h-8 rounded-lg flex items-center justify-center overflow-hidden" style={{ background: "linear-gradient(135deg, hsl(48 100% 55%), hsl(42 100% 45%))" }}>
+                <img src={pipolIcon} alt="" className="w-5 h-5 object-contain" />
               </span>
-              Pipol
-            </span>
-            <p className="text-muted-foreground text-sm mt-2">
-              Tu ciudad, como nunca la viviste.
+              <span className="font-semibold text-lg tracking-tight">Pipol</span>
+            </div>
+            <p className="text-foreground/55 text-[14px] max-w-xs leading-relaxed">
+              El mapa vivo de tu ciudad. Eventos, partidos y experiencias en tiempo real.
             </p>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
-            <a href="#" className="hover:text-foreground transition-colors duration-300">Instagram</a>
-            <a href="#" className="hover:text-foreground transition-colors duration-300">TikTok</a>
-            <a href="#" className="hover:text-foreground transition-colors duration-300">Twitter</a>
-            <a href="#" className="hover:text-foreground transition-colors duration-300">Contacto</a>
-            <a href="#" className="hover:text-foreground transition-colors duration-300">Prensa</a>
+          {/* Link grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 sm:gap-12">
+            {linkGroups.map((g) => (
+              <div key={g.title}>
+                <h4 className="text-[12px] font-semibold tracking-tight text-foreground mb-4">
+                  {g.title}
+                </h4>
+                <ul className="space-y-3">
+                  {g.links.map((l) => (
+                    <li key={l}>
+                      <a href="#" className="text-[13px] text-foreground/55 hover:text-foreground transition-colors duration-200">
+                        {l}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
 
-        <div className="mt-10 pt-8 border-t border-border/30 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-muted-foreground text-xs">
+        {/* Bottom */}
+        <div className="pt-8 border-t border-border/30 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-foreground/40 text-[12px] tracking-tight">
             © 2026 Pipol. Todos los derechos reservados.
           </p>
-          <p className="text-muted-foreground text-xs">
-            Hecho con 💛 en Buenos Aires
+          <p className="text-foreground/40 text-[12px] tracking-tight">
+            Hecho en Buenos Aires.
           </p>
         </div>
       </div>

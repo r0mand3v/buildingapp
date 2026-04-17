@@ -1,46 +1,41 @@
 import AnimateOnScroll from "./AnimateOnScroll";
-import { Apple, Play } from "lucide-react";
+import pipolIcon from "@/assets/pipol-icon.png";
 
 const FinalCTA = () => {
   return (
-    <section id="descargar" className="section-padding relative overflow-hidden">
-      {/* Background glows */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full opacity-15"
-        style={{ background: "radial-gradient(circle, hsl(48 100% 50% / 0.4), transparent 60%)" }}
-      />
-      <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] rounded-full opacity-10"
-        style={{ background: "radial-gradient(circle, hsl(330 90% 60% / 0.3), transparent 70%)" }}
+    <section id="descargar" className="section-padding relative overflow-hidden bg-background">
+      {/* Apple-style massive ambient glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full opacity-20 pointer-events-none"
+        style={{ background: "radial-gradient(circle, hsl(48 100% 50% / 0.5), transparent 60%)" }}
       />
 
-      <div className="container mx-auto relative z-10">
+      <div className="container-narrow relative z-10">
         <AnimateOnScroll>
-          <div className="glass-strong rounded-[2rem] p-8 sm:p-12 md:p-20 text-center max-w-4xl mx-auto gradient-border glow-md">
-            {/* Emoji */}
-            <div className="text-6xl mb-8">🔥</div>
+          <div className="text-center max-w-3xl mx-auto">
+            {/* Logo */}
+            <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-10" style={{ background: "linear-gradient(135deg, hsl(48 100% 55%), hsl(42 100% 45%))", boxShadow: "0 0 60px hsl(48 100% 50% / 0.4)" }}>
+              <img src={pipolIcon} alt="Pipol" className="w-9 h-9 object-contain" />
+            </div>
 
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              No te quedes
+            <h2 className="headline-xl text-5xl sm:text-7xl md:text-8xl lg:text-[7rem] mb-8">
+              <span className="text-gradient-mute">No te quedes</span>
               <br />
-              <span className="text-gradient-warm">afuera</span>
+              <span className="text-gradient-warm">afuera.</span>
             </h2>
-            <p className="text-muted-foreground text-base sm:text-lg md:text-xl mb-12 max-w-lg mx-auto leading-relaxed">
-              La ciudad está prendida y vos acá scrolleando.
-              <br className="hidden sm:block" />
-              Descargá Pipol y empezá a vivir lo que te estás perdiendo.
+            <p className="text-foreground/65 text-lg sm:text-xl md:text-2xl mb-12 max-w-xl mx-auto leading-tight tracking-tight">
+              La ciudad está prendida. Descargá Pipol y empezá a vivir lo que te estás perdiendo.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="#" className="btn-primary text-base sm:text-lg !px-10 !py-5">
-                <Apple className="w-6 h-6" />
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-5 justify-center items-center mb-8">
+              <a href="#" className="btn-primary w-full sm:w-auto">
                 Descargar para iOS
               </a>
-              <a href="#" className="btn-glass text-base sm:text-lg !px-10 !py-5">
-                <Play className="w-6 h-6 fill-current" />
+              <a href="#" className="btn-glass w-full sm:w-auto">
                 Descargar para Android
               </a>
             </div>
 
-            <p className="text-muted-foreground text-xs mt-8">
+            <p className="text-foreground/40 text-[13px] tracking-tight">
               Gratis. Sin compromiso. Sin spam. Solo planes buenos.
             </p>
           </div>
