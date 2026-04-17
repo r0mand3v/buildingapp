@@ -1,51 +1,50 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* ============================================
-   PIPOL — Apple-grade design system
-   SF Pro typography, deep blacks, Pipol yellow
+   PIPOL — Apple x Nike design system
+   White/Black alternating sections, SF Pro,
+   #FFD500 accent only where it matters.
    ============================================ */
 
 @layer base {
   :root {
-    /* Surface — true Apple deep black */
-    --background: 0 0% 0%;
-    --foreground: 0 0% 100%;
+    /* Light surfaces (Apple white) */
+    --background: 0 0% 100%;
+    --foreground: 220 9% 12%;          /* #1D1D1F */
 
-    --card: 0 0% 4%;
-    --card-foreground: 0 0% 100%;
+    --surface: 220 14% 96%;            /* #F5F5F7 */
+    --surface-foreground: 220 9% 12%;
 
-    --popover: 0 0% 4%;
-    --popover-foreground: 0 0% 100%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 9% 12%;
 
-    /* Pipol signature yellow */
-    --primary: 48 100% 50%;
-    --primary-foreground: 0 0% 0%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 9% 12%;
 
-    --secondary: 0 0% 7%;
-    --secondary-foreground: 0 0% 100%;
+    --primary: 220 9% 12%;             /* black on light = primary */
+    --primary-foreground: 0 0% 100%;
 
-    --muted: 0 0% 9%;
-    --muted-foreground: 0 0% 56%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 9% 12%;
 
-    --accent: 48 100% 50%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 6% 53%;    /* #86868B */
+
+    --accent: 51 100% 50%;             /* Pipol yellow #FFD500 */
     --accent-foreground: 0 0% 0%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 12%;
-    --input: 0 0% 12%;
-    --ring: 48 100% 50%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 220 9% 12%;
 
-    --radius: 1.25rem;
-
-    --glass-bg: 0 0% 6%;
-    --glass-border: 0 0% 18%;
-    --glow: 48 100% 50%;
+    --radius: 1.5rem;
   }
 }
 
@@ -63,245 +62,149 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", "Inter", system-ui, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", system-ui, sans-serif;
     font-feature-settings: "ss01", "cv11";
     letter-spacing: -0.011em;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", "Inter", system-ui, sans-serif;
-    letter-spacing: -0.035em;
-    font-weight: 700;
-  }
-
-  /* Apple-style large headlines */
-  .headline-xl {
-    letter-spacing: -0.045em;
-    line-height: 0.95;
-    font-weight: 700;
-  }
-
-  .headline-lg {
-    letter-spacing: -0.04em;
-    line-height: 1;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter Tight", system-ui, sans-serif;
     font-weight: 700;
   }
 
   ::selection {
-    background: hsl(48 100% 50% / 0.3);
-    color: hsl(0 0% 100%);
+    background: hsl(51 100% 50% / 0.4);
+    color: hsl(0 0% 0%);
   }
 }
 
 @layer utilities {
-  /* ========== GLASS — Apple frosted ========== */
-  .glass {
-    background: hsl(0 0% 8% / 0.55);
-    backdrop-filter: blur(28px) saturate(180%);
-    -webkit-backdrop-filter: blur(28px) saturate(180%);
-    border: 1px solid hsl(0 0% 100% / 0.06);
+  /* ========== TYPOGRAPHY ========== */
+  .display-xl {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter Tight", system-ui, sans-serif;
+    font-size: clamp(3.5rem, 9vw, 9rem);
+    line-height: 0.95;
+    letter-spacing: -0.045em;
+    font-weight: 700;
   }
-
-  .glass-strong {
-    background: hsl(0 0% 6% / 0.75);
-    backdrop-filter: blur(40px) saturate(200%);
-    -webkit-backdrop-filter: blur(40px) saturate(200%);
-    border: 1px solid hsl(0 0% 100% / 0.08);
+  .display-lg {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter Tight", system-ui, sans-serif;
+    font-size: clamp(2.5rem, 6vw, 5.5rem);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    font-weight: 700;
   }
-
-  .glass-nav {
-    background: hsl(0 0% 0% / 0.72);
-    backdrop-filter: blur(32px) saturate(180%);
-    -webkit-backdrop-filter: blur(32px) saturate(180%);
-    border-bottom: 1px solid hsl(0 0% 100% / 0.06);
+  .display-md {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter Tight", system-ui, sans-serif;
+    font-size: clamp(2rem, 4.5vw, 3.75rem);
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    font-weight: 700;
   }
-
-  .glass-yellow {
-    background: hsl(48 100% 50% / 0.07);
-    backdrop-filter: blur(24px) saturate(180%);
-    -webkit-backdrop-filter: blur(24px) saturate(180%);
-    border: 1px solid hsl(48 100% 50% / 0.18);
+  .eyebrow {
+    @apply uppercase tracking-[0.18em] text-xs font-semibold;
   }
-
-  /* ========== TYPOGRAPHY GRADIENTS ========== */
-  .text-gradient {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(180deg, hsl(48 100% 60%) 0%, hsl(42 100% 45%) 100%);
-  }
-
-  .text-gradient-warm {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(48 100% 62%) 0%, hsl(36 100% 55%) 50%, hsl(48 100% 50%) 100%);
-  }
-
-  .text-gradient-mute {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(0 0% 60%) 100%);
-  }
-
-  /* ========== GLOWS ========== */
-  .glow-xs { box-shadow: 0 0 16px hsl(48 100% 50% / 0.12); }
-  .glow-sm { box-shadow: 0 0 32px hsl(48 100% 50% / 0.18); }
-  .glow-md { box-shadow: 0 0 64px hsl(48 100% 50% / 0.22); }
-  .glow-lg { box-shadow: 0 0 120px hsl(48 100% 50% / 0.28); }
 
   /* ========== LAYOUT ========== */
-  .section-padding {
-    @apply px-5 sm:px-8 lg:px-10 py-24 sm:py-32 lg:py-40;
+  .container-page {
+    @apply mx-auto w-full;
+    max-width: 1440px;
+    padding-left: clamp(1.25rem, 5vw, 5rem);
+    padding-right: clamp(1.25rem, 5vw, 5rem);
   }
 
-  .container-narrow {
-    @apply max-w-[1120px] mx-auto;
+  .section-y {
+    padding-top: clamp(6rem, 14vw, 15rem);
+    padding-bottom: clamp(6rem, 14vw, 15rem);
   }
 
-  /* ========== BORDERS ========== */
-  .hairline {
-    border: 1px solid hsl(0 0% 100% / 0.08);
+  /* Apple-style frosted nav */
+  .nav-blur {
+    background: hsl(0 0% 100% / 0.72);
+    backdrop-filter: saturate(180%) blur(24px);
+    -webkit-backdrop-filter: saturate(180%) blur(24px);
+    border-bottom: 1px solid hsl(0 0% 0% / 0.06);
+  }
+  .nav-blur-dark {
+    background: hsl(0 0% 0% / 0.72);
+    backdrop-filter: saturate(180%) blur(24px);
+    -webkit-backdrop-filter: saturate(180%) blur(24px);
+    border-bottom: 1px solid hsl(0 0% 100% / 0.08);
   }
 
-  .gradient-border {
-    position: relative;
+  /* Soft Apple shadow for floating mockups */
+  .mockup-shadow {
+    filter: drop-shadow(0 30px 60px rgba(0,0,0,0.18))
+            drop-shadow(0 10px 20px rgba(0,0,0,0.08));
   }
-
-  .gradient-border::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 1px;
-    background: linear-gradient(135deg, hsl(48 100% 50% / 0.45), transparent 40%, hsl(0 0% 100% / 0.05) 70%, hsl(48 100% 50% / 0.2));
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
-  }
-
-  /* ========== NOISE ========== */
-  .noise::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0.025;
-    z-index: 9999;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  .mockup-shadow-dark {
+    filter: drop-shadow(0 30px 80px rgba(255,213,0,0.10))
+            drop-shadow(0 10px 30px rgba(0,0,0,0.5));
   }
 }
 
 @layer components {
-  /* ========== APPLE-STYLE BUTTONS ========== */
-  .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-300 ease-out;
-    background: linear-gradient(180deg, hsl(48 100% 55%) 0%, hsl(42 100% 45%) 100%);
-    color: hsl(0 0% 0%);
-    padding: 0.95rem 1.75rem;
+  /* ========== BUTTONS — Apple pill ========== */
+  .btn-pill {
+    @apply inline-flex items-center justify-center gap-2 rounded-full font-medium transition-all duration-200 ease-out;
+    height: 48px;
+    padding: 0 1.5rem;
     font-size: 0.95rem;
     letter-spacing: -0.01em;
-    box-shadow: 0 1px 0 hsl(48 100% 70% / 0.5) inset, 0 0 0 1px hsl(48 100% 50% / 0.3), 0 8px 24px hsl(48 100% 50% / 0.25);
   }
-
-  .btn-primary:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 1px 0 hsl(48 100% 70% / 0.5) inset, 0 0 0 1px hsl(48 100% 50% / 0.4), 0 12px 32px hsl(48 100% 50% / 0.35);
-  }
-
-  .btn-primary:active {
-    transform: translateY(0);
-  }
-
-  .btn-glass {
-    @apply inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-300 ease-out;
-    background: hsl(0 0% 100% / 0.08);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid hsl(0 0% 100% / 0.12);
+  .btn-pill-dark {
+    @apply btn-pill;
+    background: hsl(220 9% 12%);
     color: hsl(0 0% 100%);
-    padding: 0.95rem 1.75rem;
+  }
+  .btn-pill-dark:hover {
+    background: hsl(220 9% 20%);
+    transform: scale(1.02);
+  }
+  .btn-pill-light {
+    @apply btn-pill;
+    background: hsl(0 0% 100%);
+    color: hsl(220 9% 12%);
+  }
+  .btn-pill-light:hover {
+    background: hsl(220 14% 96%);
+    transform: scale(1.02);
+  }
+  .btn-pill-outline-dark {
+    @apply btn-pill;
+    background: transparent;
+    color: hsl(220 9% 12%);
+    border: 1px solid hsl(220 9% 12% / 0.15);
+  }
+  .btn-pill-outline-dark:hover {
+    background: hsl(220 9% 12% / 0.05);
+  }
+  .btn-pill-outline-light {
+    @apply btn-pill;
+    background: transparent;
+    color: hsl(0 0% 100%);
+    border: 1px solid hsl(0 0% 100% / 0.2);
+  }
+  .btn-pill-outline-light:hover {
+    background: hsl(0 0% 100% / 0.08);
+  }
+  .btn-pill-yellow {
+    @apply btn-pill;
+    background: hsl(51 100% 50%);
+    color: hsl(0 0% 0%);
+  }
+  .btn-pill-yellow:hover {
+    background: hsl(51 100% 55%);
+    transform: scale(1.02);
+  }
+  .link-arrow {
+    @apply inline-flex items-center gap-1.5 font-medium transition-all duration-200;
     font-size: 0.95rem;
-    letter-spacing: -0.01em;
   }
-
-  .btn-glass:hover {
-    background: hsl(0 0% 100% / 0.14);
-    border-color: hsl(0 0% 100% / 0.2);
-    transform: translateY(-1px);
-  }
-
-  .btn-ghost {
-    @apply inline-flex items-center justify-center gap-1.5 rounded-full font-medium transition-all duration-300 ease-out;
-    color: hsl(48 100% 55%);
-    padding: 0.5rem 0;
-    font-size: 0.95rem;
-    letter-spacing: -0.01em;
-  }
-
-  .btn-ghost:hover {
-    color: hsl(48 100% 65%);
-  }
-
-  /* ========== CARDS — Apple "card" style ========== */
-  .surface-card {
-    @apply rounded-[28px] transition-all duration-500 ease-out;
-    background: linear-gradient(180deg, hsl(0 0% 7%) 0%, hsl(0 0% 4%) 100%);
-    border: 1px solid hsl(0 0% 100% / 0.06);
-    overflow: hidden;
-  }
-
-  .surface-card:hover {
-    border-color: hsl(0 0% 100% / 0.12);
-    transform: translateY(-2px);
-  }
-
-  .feature-card {
-    @apply rounded-[24px] p-7 sm:p-8 transition-all duration-500 ease-out relative overflow-hidden;
-    background: linear-gradient(180deg, hsl(0 0% 7%) 0%, hsl(0 0% 4%) 100%);
-    border: 1px solid hsl(0 0% 100% / 0.06);
-  }
-
-  .feature-card:hover {
-    border-color: hsl(0 0% 100% / 0.14);
-    transform: translateY(-2px);
-    box-shadow: 0 20px 60px -20px hsl(0 0% 0% / 0.6);
-  }
-
-  .vibe-card {
-    @apply rounded-[20px] overflow-hidden transition-all duration-500 relative;
-    border: 1px solid hsl(0 0% 100% / 0.08);
-  }
-
-  .vibe-card:hover {
-    transform: scale(1.03);
-    border-color: hsl(48 100% 50% / 0.3);
-    box-shadow: 0 0 40px hsl(48 100% 50% / 0.15);
-  }
-
-  /* Marquee track */
-  .marquee {
-    display: flex;
-    width: max-content;
-    will-change: transform;
-  }
+  .link-arrow:hover { gap: 0.5rem; }
 }
 
-/* ========== KEYFRAMES ========== */
-@keyframes pipol-fade-up {
-  0% { opacity: 0; transform: translateY(24px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-/* ========== SCROLLBAR ========== */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-::-webkit-scrollbar-track {
-  background: hsl(0 0% 0%);
-}
-::-webkit-scrollbar-thumb {
-  background: hsl(0 0% 18%);
-  border-radius: 10px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: hsl(48 100% 50% / 0.5);
-}
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: hsl(220 6% 80%); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(220 6% 60%); }

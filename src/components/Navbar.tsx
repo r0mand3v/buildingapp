@@ -1,91 +1,94 @@
-import { useState, useEffect } from "react";
-import pipolLogo from "@/assets/pipol-icon.png";
+import { useEffect, useState } from "react";
+import { Menu, X } from "lucide-react";
+import pipolLogo from "@/assets/pipol-logo.png";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const links = [
-    { label: "Producto", href: "#que-es" },
     { label: "Mapa", href: "#mapa" },
     { label: "Vibes", href: "#vibes" },
-    { label: "Cómo funciona", href: "#como-funciona" },
+    { label: "Descubrir", href: "#descubrir" },
+    { label: "Canchas", href: "#canchas" },
   ];
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "glass-nav" : "bg-transparent"
+    <header
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+        scrolled ? "nav-blur" : "bg-transparent"
       }`}
     >
-      <div className="max-w-[1400px] mx-auto flex items-center justify-between px-5 sm:px-8 h-12 sm:h-14">
-        {/* Logo — Apple-style minimal */}
-        <a href="#" className="flex items-center gap-2 group" aria-label="Pipol">
-          <span className="w-7 h-7 rounded-lg flex items-center justify-center overflow-hidden" style={{ background: "linear-gradient(135deg, hsl(48 100% 55%), hsl(42 100% 45%))" }}>
-            <img src={pipolLogo} alt="" className="w-4 h-4 object-contain" />
-          </span>
-          <span className="font-semibold text-[15px] tracking-tight">Pipol</span>
+      <nav className="container-page flex items-center justify-between h-12">
+        <a href="#" className="flex items-center gap-2" aria-label="Pipol">
+          <img src={pipolLogo} alt="Pipol" className="h-6 w-auto invert" />
         </a>
 
-        {/* Desktop nav — Apple thin links */}
-        <div className="hidden md:flex items-center gap-9 absolute left-1/2 -translate-x-1/2">
+        <div className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
           {links.map((l) => (
             <a
-              key={l.label}
+              key={l.href}
               href={l.href}
-              className="text-[13px] text-foreground/80 hover:text-foreground transition-colors duration-200"
+              className={`text-[13px] font-medium transition-colors ${
+                scrolled ? "text-foreground/80 hover:text-foreground" : "text-white/85 hover:text-white"
+              }`}
             >
               {l.label}
             </a>
           ))}
         </div>
 
-        <div className="flex items-center gap-3">
-          <a href="#descargar" className="hidden sm:inline-flex text-[13px] font-medium text-primary hover:text-primary/80 transition-colors">
-            Descargar →
-          </a>
-          {/* Mobile hamburger */}
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden flex flex-col gap-1 p-2"
-            aria-label="Menú"
-          >
-            <span className={`w-4 h-px bg-foreground transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-[5px]" : ""}`} />
-            <span className={`w-4 h-px bg-foreground transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`} />
-            <span className={`w-4 h-px bg-foreground transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-[5px]" : ""}`} />
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile menu */}
-      {menuOpen && (
-        <div className="md:hidden glass-strong border-t border-border/30 px-6 py-4 animate-fade-in">
-          {links.map((l) => (
-            <a
-              key={l.label}
-              href={l.href}
-              onClick={() => setMenuOpen(false)}
-              className="block py-3 text-foreground/90 hover:text-primary transition-colors text-base"
-            >
-              {l.label}
-            </a>
-          ))}
+        <div className="hidden md:flex items-center gap-3">
           <a
-            href="#descargar"
-            onClick={() => setMenuOpen(false)}
-            className="block py-3 text-primary font-medium text-base"
+            href="#download"
+            className={`btn-pill text-[13px] h-9 px-4 transition-all ${
+              scrolled
+                ? "bg-foreground text-background hover:bg-foreground/85"
+                : "bg-white text-black hover:bg-white/90"
+            }`}
           >
-            Descargar Pipol →
+            Descargar
           </a>
+        </div>
+
+        <button
+          className={`md:hidden h-9 w-9 inline-flex items-center justify-center rounded-full ${
+            scrolled ? "hover:bg-foreground/5 text-foreground" : "hover:bg-white/10 text-white"
+          }`}
+          onClick={() => setOpen((v) => !v)}
+          aria-label="Menu"
+        >
+          {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+        </button>
+      </nav>
+
+      {open && (
+        <div className="md:hidden nav-blur border-t border-foreground/5">
+          <div className="container-page py-4 flex flex-col gap-1">
+            {links.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                onClick={() => setOpen(false)}
+                className="py-3 text-base font-medium text-foreground/90"
+              >
+                {l.label}
+              </a>
+            ))}
+            <a href="#download" onClick={() => setOpen(false)} className="btn-pill-dark mt-3 self-start">
+              Descargar
+            </a>
+          </div>
         </div>
       )}
-    </nav>
+    </header>
   );
 };
 

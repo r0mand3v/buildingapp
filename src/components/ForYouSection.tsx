@@ -1,60 +1,34 @@
 import AnimateOnScroll from "./AnimateOnScroll";
 
-const scenarios = [
-  {
-    eyebrow: "Con amigos",
-    title: "El after está\na 4 cuadras.",
-    desc: "Estás con los pibes sin saber qué hacer. Abrís Pipol y a 5 cuadras hay un after prendido. No lo pensás dos veces.",
-    gradient: "from-amber-500/15 via-orange-500/8 to-transparent",
-  },
-  {
-    eyebrow: "Con tu pareja",
-    title: "Una cita\nque no se olvida.",
-    desc: "Querés hacer algo distinto. Pipol te muestra una cena secreta en un rooftop que ni sabías que existía.",
-    gradient: "from-pink-500/15 via-rose-500/8 to-transparent",
-  },
-  {
-    eyebrow: "Para conocer gente",
-    title: "Amigos nuevos\nen una hora.",
-    desc: "Te mudaste o querés ampliar tu círculo. Unite a un plan abierto y conocé gente real, no solo perfiles.",
-    gradient: "from-blue-500/15 via-indigo-500/8 to-transparent",
-  },
-  {
-    eyebrow: "Cuando querés moverte",
-    title: "Faltan 2\npara el partido.",
-    desc: "Tenés las botines puestas. Abrís Pipol, te sumás en un toque y salís a jugar. Así de fácil.",
-    gradient: "from-green-500/15 via-emerald-500/8 to-transparent",
-  },
+const categories = [
+  { name: "Deportes", count: "128 canchas", dot: "bg-blue-500" },
+  { name: "Música", count: "47 shows esta semana", dot: "bg-pink-500" },
+  { name: "Fiestas", count: "Todas las noches", dot: "bg-[hsl(var(--accent))]" },
+  { name: "Comida", count: "Pop-ups y bares", dot: "bg-orange-500" },
+  { name: "Cultura", count: "Arte, charlas, cine", dot: "bg-purple-500" },
+  { name: "Aire libre", count: "Picnics, runs, trekking", dot: "bg-emerald-500" },
 ];
 
 const ForYouSection = () => {
   return (
-    <section className="section-padding bg-background">
-      <div className="container-narrow">
-        <AnimateOnScroll className="text-center mb-16 sm:mb-20">
-          <span className="inline-block text-xs sm:text-[13px] font-medium text-primary tracking-tight mb-6">
-            Para vos
-          </span>
-          <h2 className="headline-lg text-4xl sm:text-6xl md:text-7xl lg:text-[5rem]">
-            <span className="text-gradient-mute">Sea cual sea tu plan,</span>
-            <br />
-            <span className="text-gradient-warm">Pipol te lo muestra.</span>
-          </h2>
+    <section id="descubrir" className="bg-surface text-foreground section-y">
+      <div className="container-page">
+        <AnimateOnScroll>
+          <span className="eyebrow text-muted-foreground">Descubrir</span>
+        </AnimateOnScroll>
+        <AnimateOnScroll delay={80}>
+          <h2 className="display-lg mt-6 max-w-[16ch]">Lo que te gusta. Curado para vos.</h2>
         </AnimateOnScroll>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {scenarios.map((s, i) => (
-            <AnimateOnScroll key={s.eyebrow} delay={i * 100}>
-              <div className={`feature-card h-full bg-gradient-to-br ${s.gradient}`}>
-                <span className="text-[12px] uppercase tracking-[0.18em] text-primary font-semibold">
-                  {s.eyebrow}
-                </span>
-                <h3 className="headline-lg text-3xl sm:text-4xl mt-4 mb-5 whitespace-pre-line text-gradient-mute">
-                  {s.title}
-                </h3>
-                <p className="text-foreground/60 text-[15px] leading-relaxed">
-                  {s.desc}
-                </p>
+        <div className="mt-20 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          {categories.map((c, i) => (
+            <AnimateOnScroll key={c.name} delay={i * 60}>
+              <div className="group bg-white rounded-3xl p-8 h-56 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1">
+                <span className={`block h-2.5 w-2.5 rounded-full ${c.dot}`} />
+                <div>
+                  <h3 className="text-2xl font-semibold tracking-tight">{c.name}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">{c.count}</p>
+                </div>
               </div>
             </AnimateOnScroll>
           ))}

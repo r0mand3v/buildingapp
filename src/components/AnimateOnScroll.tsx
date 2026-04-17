@@ -7,7 +7,7 @@ interface Props {
   threshold?: number;
 }
 
-const AnimateOnScroll = ({ children, className = "", delay = 0, threshold = 0.15 }: Props) => {
+const AnimateOnScroll = ({ children, className = "", delay = 0, threshold = 0.12 }: Props) => {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -21,7 +21,7 @@ const AnimateOnScroll = ({ children, className = "", delay = 0, threshold = 0.15
           obs.unobserve(el);
         }
       },
-      { threshold }
+      { threshold, rootMargin: "0px 0px -80px 0px" }
     );
     obs.observe(el);
     return () => obs.disconnect();
@@ -30,8 +30,8 @@ const AnimateOnScroll = ({ children, className = "", delay = 0, threshold = 0.15
   return (
     <div
       ref={ref}
-      className={`transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+      className={`transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
       } ${className}`}
       style={{ transitionDelay: `${delay}ms` }}
     >
