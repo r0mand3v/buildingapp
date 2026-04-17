@@ -1,120 +1,162 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================
+   PIPOL — Apple-grade design system
+   SF Pro typography, deep blacks, Pipol yellow
+   ============================================ */
+
 @layer base {
   :root {
-    --background: 225 25% 3%;
-    --foreground: 0 0% 98%;
+    /* Surface — true Apple deep black */
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
 
-    --card: 225 20% 7%;
-    --card-foreground: 0 0% 98%;
+    --card: 0 0% 4%;
+    --card-foreground: 0 0% 100%;
 
-    --popover: 225 20% 7%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 0 0% 4%;
+    --popover-foreground: 0 0% 100%;
 
+    /* Pipol signature yellow */
     --primary: 48 100% 50%;
-    --primary-foreground: 225 25% 3%;
+    --primary-foreground: 0 0% 0%;
 
-    --secondary: 225 18% 11%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 0 0% 7%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 225 15% 14%;
-    --muted-foreground: 225 10% 50%;
+    --muted: 0 0% 9%;
+    --muted-foreground: 0 0% 56%;
 
     --accent: 48 100% 50%;
-    --accent-foreground: 225 25% 3%;
+    --accent-foreground: 0 0% 0%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 225 15% 14%;
-    --input: 225 15% 14%;
+    --border: 0 0% 12%;
+    --input: 0 0% 12%;
     --ring: 48 100% 50%;
 
-    --radius: 0.75rem;
+    --radius: 1.25rem;
 
-    --glass-bg: 225 20% 7%;
-    --glass-border: 225 12% 18%;
+    --glass-bg: 0 0% 6%;
+    --glass-border: 0 0% 18%;
     --glow: 48 100% 50%;
-
-    --neon-pink: 330 90% 60%;
-    --neon-blue: 210 100% 60%;
-    --neon-green: 150 80% 50%;
   }
 }
 
 @layer base {
   * {
     @apply border-border;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 
   body {
-    @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', system-ui, sans-serif;
+    @apply bg-background text-foreground;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", "Inter", system-ui, sans-serif;
+    font-feature-settings: "ss01", "cv11";
+    letter-spacing: -0.011em;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", "Inter", system-ui, sans-serif;
+    letter-spacing: -0.035em;
+    font-weight: 700;
+  }
+
+  /* Apple-style large headlines */
+  .headline-xl {
+    letter-spacing: -0.045em;
+    line-height: 0.95;
+    font-weight: 700;
+  }
+
+  .headline-lg {
+    letter-spacing: -0.04em;
+    line-height: 1;
+    font-weight: 700;
+  }
+
+  ::selection {
+    background: hsl(48 100% 50% / 0.3);
+    color: hsl(0 0% 100%);
   }
 }
 
 @layer utilities {
+  /* ========== GLASS — Apple frosted ========== */
   .glass {
-    background: hsl(225 20% 7% / 0.45);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border: 1px solid hsl(225 12% 18% / 0.6);
+    background: hsl(0 0% 8% / 0.55);
+    backdrop-filter: blur(28px) saturate(180%);
+    -webkit-backdrop-filter: blur(28px) saturate(180%);
+    border: 1px solid hsl(0 0% 100% / 0.06);
   }
 
   .glass-strong {
-    background: hsl(225 20% 7% / 0.7);
-    backdrop-filter: blur(40px);
-    -webkit-backdrop-filter: blur(40px);
-    border: 1px solid hsl(225 12% 18% / 0.5);
+    background: hsl(0 0% 6% / 0.75);
+    backdrop-filter: blur(40px) saturate(200%);
+    -webkit-backdrop-filter: blur(40px) saturate(200%);
+    border: 1px solid hsl(0 0% 100% / 0.08);
+  }
+
+  .glass-nav {
+    background: hsl(0 0% 0% / 0.72);
+    backdrop-filter: blur(32px) saturate(180%);
+    -webkit-backdrop-filter: blur(32px) saturate(180%);
+    border-bottom: 1px solid hsl(0 0% 100% / 0.06);
   }
 
   .glass-yellow {
-    background: hsl(48 100% 50% / 0.06);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border: 1px solid hsl(48 100% 50% / 0.15);
+    background: hsl(48 100% 50% / 0.07);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid hsl(48 100% 50% / 0.18);
   }
 
+  /* ========== TYPOGRAPHY GRADIENTS ========== */
   .text-gradient {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(48 100% 55%), hsl(42 100% 45%));
+    background-image: linear-gradient(180deg, hsl(48 100% 60%) 0%, hsl(42 100% 45%) 100%);
   }
 
   .text-gradient-warm {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(48 100% 60%), hsl(30 100% 55%), hsl(48 100% 50%));
+    background-image: linear-gradient(135deg, hsl(48 100% 62%) 0%, hsl(36 100% 55%) 50%, hsl(48 100% 50%) 100%);
   }
 
-  .glow-xs {
-    box-shadow: 0 0 12px hsl(48 100% 50% / 0.12);
+  .text-gradient-mute {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(0 0% 60%) 100%);
   }
 
-  .glow-sm {
-    box-shadow: 0 0 24px hsl(48 100% 50% / 0.18);
-  }
+  /* ========== GLOWS ========== */
+  .glow-xs { box-shadow: 0 0 16px hsl(48 100% 50% / 0.12); }
+  .glow-sm { box-shadow: 0 0 32px hsl(48 100% 50% / 0.18); }
+  .glow-md { box-shadow: 0 0 64px hsl(48 100% 50% / 0.22); }
+  .glow-lg { box-shadow: 0 0 120px hsl(48 100% 50% / 0.28); }
 
-  .glow-md {
-    box-shadow: 0 0 48px hsl(48 100% 50% / 0.22);
-  }
-
-  .glow-lg {
-    box-shadow: 0 0 80px hsl(48 100% 50% / 0.28);
-  }
-
-  .glow-hero {
-    box-shadow: 0 0 120px 40px hsl(48 100% 50% / 0.12);
-  }
-
+  /* ========== LAYOUT ========== */
   .section-padding {
-    @apply px-5 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-36;
+    @apply px-5 sm:px-8 lg:px-10 py-24 sm:py-32 lg:py-40;
+  }
+
+  .container-narrow {
+    @apply max-w-[1120px] mx-auto;
+  }
+
+  /* ========== BORDERS ========== */
+  .hairline {
+    border: 1px solid hsl(0 0% 100% / 0.08);
   }
 
   .gradient-border {
@@ -127,89 +169,139 @@
     inset: 0;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(135deg, hsl(48 100% 50% / 0.4), transparent 50%, hsl(48 100% 50% / 0.15));
+    background: linear-gradient(135deg, hsl(48 100% 50% / 0.45), transparent 40%, hsl(0 0% 100% / 0.05) 70%, hsl(48 100% 50% / 0.2));
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     pointer-events: none;
   }
+
+  /* ========== NOISE ========== */
+  .noise::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.025;
+    z-index: 9999;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
 }
 
 @layer components {
+  /* ========== APPLE-STYLE BUTTONS ========== */
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2.5 rounded-full font-semibold transition-all duration-300;
-    background: linear-gradient(135deg, hsl(48 100% 50%), hsl(42 100% 45%));
-    color: hsl(225 25% 3%);
-    padding: 1rem 2rem;
-    font-size: 1rem;
-    box-shadow: 0 0 24px hsl(48 100% 50% / 0.25), 0 4px 12px hsl(0 0% 0% / 0.3);
+    @apply inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-300 ease-out;
+    background: linear-gradient(180deg, hsl(48 100% 55%) 0%, hsl(42 100% 45%) 100%);
+    color: hsl(0 0% 0%);
+    padding: 0.95rem 1.75rem;
+    font-size: 0.95rem;
+    letter-spacing: -0.01em;
+    box-shadow: 0 1px 0 hsl(48 100% 70% / 0.5) inset, 0 0 0 1px hsl(48 100% 50% / 0.3), 0 8px 24px hsl(48 100% 50% / 0.25);
   }
 
   .btn-primary:hover {
-    transform: scale(1.04);
-    box-shadow: 0 0 40px hsl(48 100% 50% / 0.35), 0 8px 24px hsl(0 0% 0% / 0.3);
+    transform: translateY(-1px);
+    box-shadow: 0 1px 0 hsl(48 100% 70% / 0.5) inset, 0 0 0 1px hsl(48 100% 50% / 0.4), 0 12px 32px hsl(48 100% 50% / 0.35);
+  }
+
+  .btn-primary:active {
+    transform: translateY(0);
   }
 
   .btn-glass {
-    @apply inline-flex items-center justify-center gap-2.5 rounded-full glass font-semibold px-8 py-4 text-base transition-all duration-300;
-    color: hsl(0 0% 98%);
+    @apply inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-300 ease-out;
+    background: hsl(0 0% 100% / 0.08);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid hsl(0 0% 100% / 0.12);
+    color: hsl(0 0% 100%);
+    padding: 0.95rem 1.75rem;
+    font-size: 0.95rem;
+    letter-spacing: -0.01em;
   }
 
   .btn-glass:hover {
-    transform: scale(1.04);
-    background: hsl(225 20% 7% / 0.65);
+    background: hsl(0 0% 100% / 0.14);
+    border-color: hsl(0 0% 100% / 0.2);
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-1.5 rounded-full font-medium transition-all duration-300 ease-out;
+    color: hsl(48 100% 55%);
+    padding: 0.5rem 0;
+    font-size: 0.95rem;
+    letter-spacing: -0.01em;
+  }
+
+  .btn-ghost:hover {
+    color: hsl(48 100% 65%);
+  }
+
+  /* ========== CARDS — Apple "card" style ========== */
+  .surface-card {
+    @apply rounded-[28px] transition-all duration-500 ease-out;
+    background: linear-gradient(180deg, hsl(0 0% 7%) 0%, hsl(0 0% 4%) 100%);
+    border: 1px solid hsl(0 0% 100% / 0.06);
+    overflow: hidden;
+  }
+
+  .surface-card:hover {
+    border-color: hsl(0 0% 100% / 0.12);
+    transform: translateY(-2px);
+  }
+
+  .feature-card {
+    @apply rounded-[24px] p-7 sm:p-8 transition-all duration-500 ease-out relative overflow-hidden;
+    background: linear-gradient(180deg, hsl(0 0% 7%) 0%, hsl(0 0% 4%) 100%);
+    border: 1px solid hsl(0 0% 100% / 0.06);
+  }
+
+  .feature-card:hover {
+    border-color: hsl(0 0% 100% / 0.14);
+    transform: translateY(-2px);
+    box-shadow: 0 20px 60px -20px hsl(0 0% 0% / 0.6);
   }
 
   .vibe-card {
-    @apply rounded-2xl overflow-hidden transition-all duration-500;
+    @apply rounded-[20px] overflow-hidden transition-all duration-500 relative;
+    border: 1px solid hsl(0 0% 100% / 0.08);
   }
 
   .vibe-card:hover {
     transform: scale(1.03);
-    box-shadow: 0 0 30px hsl(48 100% 50% / 0.15);
+    border-color: hsl(48 100% 50% / 0.3);
+    box-shadow: 0 0 40px hsl(48 100% 50% / 0.15);
   }
 
-  .feature-card {
-    @apply rounded-3xl p-7 sm:p-8 transition-all duration-500;
-    background: hsl(225 20% 7% / 0.5);
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
-    border: 1px solid hsl(225 12% 18% / 0.5);
-  }
-
-  .feature-card:hover {
-    border-color: hsl(48 100% 50% / 0.25);
-    box-shadow: 0 0 40px hsl(48 100% 50% / 0.08);
-    transform: translateY(-2px);
+  /* Marquee track */
+  .marquee {
+    display: flex;
+    width: max-content;
+    will-change: transform;
   }
 }
 
-html {
-  scroll-behavior: smooth;
+/* ========== KEYFRAMES ========== */
+@keyframes pipol-fade-up {
+  0% { opacity: 0; transform: translateY(24px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
+/* ========== SCROLLBAR ========== */
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: hsl(225 25% 3%);
+  background: hsl(0 0% 0%);
 }
 ::-webkit-scrollbar-thumb {
-  background: hsl(225 12% 18%);
+  background: hsl(0 0% 18%);
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(48 100% 50% / 0.4);
-}
-
-/* Noise texture overlay */
-.noise::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.015;
-  z-index: 9999;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background: hsl(48 100% 50% / 0.5);
 }

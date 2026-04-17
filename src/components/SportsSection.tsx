@@ -1,67 +1,68 @@
 import AnimateOnScroll from "./AnimateOnScroll";
-import { Bike, Dumbbell, MapPin } from "lucide-react";
 
 const sports = [
   { emoji: "⚽", label: "Fútbol 5" },
   { emoji: "🏀", label: "Básquet 3v3" },
   { emoji: "🎾", label: "Pádel" },
   { emoji: "🏃", label: "Running" },
-  { emoji: "🏐", label: "Vóley playa" },
+  { emoji: "🏐", label: "Vóley" },
   { emoji: "🚴", label: "Ciclismo" },
+];
+
+const stats = [
+  { num: "500+", label: "partidos activos" },
+  { num: "12", label: "deportes disponibles" },
+  { num: "30s", label: "para sumarte" },
 ];
 
 const SportsSection = () => {
   return (
-    <section className="section-padding relative overflow-hidden">
+    <section className="section-padding relative overflow-hidden bg-background">
       {/* Background accent */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full opacity-10" style={{ background: "radial-gradient(circle, hsl(48 100% 50% / 0.4), transparent 70%)" }} />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-15 pointer-events-none" style={{ background: "radial-gradient(circle, hsl(48 100% 50% / 0.5), transparent 70%)" }} />
 
-      <div className="container mx-auto relative z-10">
+      <div className="container-narrow relative z-10">
         <AnimateOnScroll className="text-center mb-16">
-          <span className="inline-block text-primary font-display text-xs sm:text-sm uppercase tracking-[0.25em] mb-5">
-            Para cuando querés moverte
+          <span className="inline-block text-xs sm:text-[13px] font-medium text-primary tracking-tight mb-6">
+            Deportes
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-            El partido está{" "}
-            <span className="text-gradient">esperándote</span>
+          <h2 className="headline-lg text-4xl sm:text-6xl md:text-7xl lg:text-[5rem] mb-6">
+            <span className="text-gradient-mute">El partido</span>
+            <br />
+            <span className="text-gradient-warm">te está esperando.</span>
           </h2>
-          <p className="text-muted-foreground text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
+          <p className="text-foreground/60 text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
             ¿Querés jugar un fútbol 5 ahora? ¿Un 3v3 de básquet? ¿Un pádel?
             En Pipol siempre falta uno. Y ese uno podés ser vos.
           </p>
         </AnimateOnScroll>
 
-        {/* Sports grid */}
-        <div className="flex flex-wrap justify-center gap-4 mb-14 max-w-2xl mx-auto">
+        {/* Sports pills */}
+        <div className="flex flex-wrap justify-center gap-3 mb-16 max-w-2xl mx-auto">
           {sports.map((s, i) => (
-            <AnimateOnScroll key={s.label} delay={i * 60}>
-              <div className="glass-yellow rounded-2xl px-5 py-4 flex items-center gap-3 hover:glow-sm transition-all duration-300 hover:scale-105 cursor-default">
-                <span className="text-2xl">{s.emoji}</span>
-                <span className="font-display font-semibold text-sm">{s.label}</span>
+            <AnimateOnScroll key={s.label} delay={i * 50}>
+              <div className="glass-yellow rounded-full px-5 py-2.5 flex items-center gap-2.5 hover:scale-105 transition-transform duration-300">
+                <span className="text-lg">{s.emoji}</span>
+                <span className="font-medium text-[14px] tracking-tight">{s.label}</span>
               </div>
             </AnimateOnScroll>
           ))}
         </div>
 
-        {/* Bottom highlights */}
+        {/* Stats — Apple style */}
         <AnimateOnScroll>
-          <div className="glass-strong rounded-3xl p-8 sm:p-10 max-w-3xl mx-auto gradient-border">
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
-              <div className="flex flex-col items-center gap-3">
-                <MapPin className="w-8 h-8 text-primary" />
-                <p className="font-display font-bold text-2xl text-gradient">500+</p>
-                <p className="text-muted-foreground text-sm">partidos activos ahora</p>
-              </div>
-              <div className="flex flex-col items-center gap-3">
-                <Dumbbell className="w-8 h-8 text-primary" />
-                <p className="font-display font-bold text-2xl text-gradient">12</p>
-                <p className="text-muted-foreground text-sm">deportes disponibles</p>
-              </div>
-              <div className="flex flex-col items-center gap-3">
-                <Bike className="w-8 h-8 text-primary" />
-                <p className="font-display font-bold text-2xl text-gradient">30 seg</p>
-                <p className="text-muted-foreground text-sm">para sumarte a un plan</p>
-              </div>
+          <div className="surface-card p-10 sm:p-14 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-6 text-center">
+              {stats.map((s) => (
+                <div key={s.label}>
+                  <p className="headline-xl text-5xl sm:text-6xl mb-3 text-gradient-warm">
+                    {s.num}
+                  </p>
+                  <p className="text-foreground/55 text-[14px] tracking-tight">
+                    {s.label}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </AnimateOnScroll>
