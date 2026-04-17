@@ -1,27 +1,27 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
-import CityNeverSleeps from "@/components/CityNeverSleeps";
 import LiveMapSection from "@/components/LiveMapSection";
 import VibesSection from "@/components/VibesSection";
 import ForYouSection from "@/components/ForYouSection";
+import SocialSection from "@/components/SocialSection";
 import HowItWorks from "@/components/HowItWorks";
-import Testimonials from "@/components/Testimonials";
 import SportsSection from "@/components/SportsSection";
+import Manifesto from "@/components/Manifesto";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
-    <div className="min-h-screen noise">
+    <div className="min-h-screen bg-background">
       <Navbar />
       <HeroSection />
-      <CityNeverSleeps />
       <LiveMapSection />
       <VibesSection />
       <ForYouSection />
+      <SocialSection />
       <HowItWorks />
-      <Testimonials />
       <SportsSection />
+      <Manifesto />
       <FinalCTA />
       <Footer />
     </div>
