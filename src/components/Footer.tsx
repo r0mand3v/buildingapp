@@ -1,10 +1,11 @@
+import { Link } from "react-router-dom";
 import pipolLogo from "@/assets/pipol-logo.png";
 
 const cols = [
-  { title: "Producto", links: ["Mapa", "Vibes", "Descubrir", "Canchas"] },
-  { title: "Pipol", links: ["Sobre nosotros", "Carreras", "Prensa", "Contacto"] },
-  { title: "Soporte", links: ["Ayuda", "Comunidad", "Estado"] },
-  { title: "Legal", links: ["Privacidad", "Términos", "Cookies"] },
+  { title: "Producto", links: [{ label: "Mapa", href: "#" }, { label: "Vibes", href: "#" }, { label: "Descubrir", href: "#" }, { label: "Canchas", href: "#" }] },
+  { title: "Pipol", links: [{ label: "Sobre nosotros", href: "#" }, { label: "Carreras", href: "#" }, { label: "Prensa", href: "#" }, { label: "Contacto", href: "#" }] },
+  { title: "Soporte", links: [{ label: "Ayuda", href: "#" }, { label: "Comunidad", href: "#" }, { label: "Estado", href: "#" }] },
+  { title: "Legal", links: [{ label: "Privacidad", href: "/privacy-policy" }, { label: "Términos", href: "#" }, { label: "Cookies", href: "#" }] },
 ];
 
 const Footer = () => {
@@ -21,10 +22,16 @@ const Footer = () => {
               <h4 className="text-xs font-semibold text-foreground/80">{c.title}</h4>
               <ul className="mt-4 space-y-3">
                 {c.links.map((l) => (
-                  <li key={l}>
-                    <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                      {l}
-                    </a>
+                  <li key={l.label}>
+                    {l.href.startsWith("/") ? (
+                      <Link to={l.href} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                        {l.label}
+                      </Link>
+                    ) : (
+                      <a href={l.href} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                        {l.label}
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>
