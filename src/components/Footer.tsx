@@ -24,7 +24,10 @@ const Footer = () => {
                 {c.links.map((l) => (
                   <li key={l.label}>
                     {l.href.startsWith("/") ? (
-                      <Link to={l.href} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                      <Link
+                        to={l.href}
+                        className="inline-block text-sm px-3 py-1 rounded-full border border-foreground/20 text-muted-foreground hover:text-foreground hover:border-foreground/50 transition-colors"
+                      >
                         {l.label}
                       </Link>
                     ) : (
